@@ -1,10 +1,6 @@
 # upset_enrich
 Python module to create UpSet plot with bars colored to show significant overlap between every pair of input sets within the group. Adds a little bit of functionality on top of [UpSetPlot](https://upsetplot.readthedocs.io/en/stable/).
 
-<p align="center">
-  <img src="upset_example.png" alt="Example UpSet enrichment plot" width=500 />
-</p>
-
 ## Installation
 ```
 pip install upset_enrich
@@ -12,6 +8,10 @@ pip install upset_enrich
 
 ## Usage
 You need to `from upset_enrich import upset_enrich` and get your data in the right format, then call the `upset_enrich()` function. Data should be a dict, with group names as keys, and values being lists or sets of group members. Values will be converted to strings.
+
+<p align="center">
+  <img src="upset_example.png" alt="Example UpSet enrichment plot" width=500 />
+</p>
 
 Here is an example (to generate the above plot):
 
