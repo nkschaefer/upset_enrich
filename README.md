@@ -2,7 +2,7 @@
 Python module to create UpSet plot with bars colored to show significant overlap between every pair of input sets within the group. Adds a little bit of functionality on top of [UpSetPlot](https://upsetplot.readthedocs.io/en/stable/).
 
 <p align="center">
-  <img src="upset_example.png" alt="Example UpSet enrichment plot" width=400 />
+  <img src="upset_example.png" alt="Example UpSet enrichment plot" width=500 />
 </p>
 
 ## Installation
