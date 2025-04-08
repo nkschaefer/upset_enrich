@@ -20,17 +20,19 @@ from upset_enrich import upset_enrich
 
 data = {}
 
+# How many total set members were there to choose from?
 tot_members = 3000
-indices = list(range(0, tot_members))
 
-data['A'] = indices[0:500]
-data['B'] = indices[30:530]
-data['C'] = indices[1200:2500]
-data['D'] = indices[2200:3000]
-data['E'] = indices[500:2000]
-data['F'] = indices[1000:1400]
+data['A'] = list(range(0,500))
+data['B'] = list(range(30,530))
+data['C'] = list(range(1200,2500))
+data['D'] = list(range(2200,3000))
+data['E'] = list(range(500,2000))
+data['F'] = list(range(1000,1400))
 
-upset_enrich(data, tot_members, plot_out='upset_example.pdf', p_thresh=0.01)
+upset_enrich(data, tot_members,
+    plot_out='upset_example.pdf',
+    p_thresh=0.01)
 ```
 
 This will create a plot in the current directory called `upset_example.pdf`.
