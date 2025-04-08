@@ -13,7 +13,7 @@ pip install upset_enrich
 ## Usage
 You need to `from upset_enrich import upset_enrich` and get your data in the right format, then call the `upset_enrich()` function. Data should be a dict, with group names as keys, and values being lists or sets of group members. Values will be converted to strings.
 
-Here is an example:
+Here is an example (to generate the above plot):
 
 ```
 from upset_enrich import upset_enrich
