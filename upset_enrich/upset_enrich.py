@@ -29,12 +29,20 @@ def upset_enrich(dat,
 
     # Read all as Pandas DataFrames
     dfs = []
+    dfcount_1way = {'name': [], 'count': []}
     for name in dat.keys():
-        dfs.append(pd.DataFrame({'member': dat[name], 'name': name, 'val': 1}))
+        datconv = []
+        for i, elt in enumerate(dat[name]):
+            datconv.append(str(elt))
+        dfs.append(pd.DataFrame({'member': datconv, 'name': name, 'val': 1}))
+        dfcount_1way['name'].append(name)
+        dfcount_1way['count'].append(len(dat[name]))
     df = pd.concat(dfs, axis=0)
     df['val'] = df['val'].astype(int)
-
-    counts_1way = df.loc[df['val'] == 1,:]['name'].value_counts().reset_index()
+    
+    #counts_1way = df.loc[df['val'] == 1,:]['name'].value_counts()\
+    #    .reset_index(drop=False).rename({"index": "name"}, axis=1)
+    counts_1way = pd.DataFrame(dfcount_1way)
 
     # Now need to cast
     df = pd.pivot(df, index='member', columns=['name'], values=['val']).fillna(0)
@@ -53,7 +61,7 @@ def upset_enrich(dat,
         names1.append(name1[1])
         names2.append(name2[1])
         counts.append(df.loc[(df[name1] == 1) & (df[name2] == 1),:].shape[0])
-
+    
     counts_2way = pd.DataFrame({'name1': names1, 'name2': names2, 'overlap': counts})
     counts_2way = counts_2way.merge(counts_1way, left_on='name1', right_on='name')
     counts_2way = counts_2way.merge(counts_1way, left_on='name2', right_on='name').\
@@ -63,7 +71,7 @@ def upset_enrich(dat,
             [n_items] * counts_2way.shape[0],
             counts_2way['count_x'],
             counts_2way['count_y'])
-
+    
     counts_2way = counts_2way.loc[counts_2way['p'] < thresh,:]
 
     name_all = set([])
